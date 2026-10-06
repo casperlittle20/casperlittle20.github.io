@@ -60,3 +60,79 @@ nav a {
     padding: 40px 20px;
     max-width: 600px;
 }
+/* LIGHTBOX */
+
+
+   .lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: white;
+    padding: 40px 80px;
+    box-sizing: border-box;
+
+    grid-template-columns: minmax(0, 1fr) 220px;
+    align-items: center;
+    gap: 60px;
+}
+
+
+.lightbox.open {
+    display: grid;
+}
+
+.lightbox-image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.lightbox-image-container img {
+    max-width: 90vw;
+    max-height: 90vh;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+}
+
+.lightbox-info {
+    align-self: center;
+}
+
+.lightbox-info h2 {
+    font-size: 16px;
+    font-weight: normal;
+    margin: 0 0 20px 0;
+}
+
+.lightbox-info p {
+    font-size: 13px;
+    margin: 6px 0;
+}
+
+.lightbox-close,
+.lightbox-prev,
+.lightbox-next {
+    position: absolute;
+    border: none;
+    background: none;
+    color: black;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.lightbox-close {
+    top: 20px;
+    right: 25px;
+}
+.lightbox-prev {
+    left: 40px;
+    top: 50%;
+}
+
+.lightbox-next {
+    right: 40px;
+    top: 50%;
+}
