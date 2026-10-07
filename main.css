@@ -78,7 +78,7 @@ nav a {
     gap: 60px;
 }
 
-.lightbox.open {
+#lightbox.open {
     display: grid !important;
 }
 
