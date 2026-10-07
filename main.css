@@ -72,6 +72,10 @@ nav a {
     padding: 40px 80px;
     box-sizing: border-box;
 
+       .lightbox.open {
+    display: flex;
+}
+
     grid-template-columns: minmax(0, 1fr) 220px;
     align-items: center;
     gap: 60px;
