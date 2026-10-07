@@ -283,7 +283,8 @@ function showImage(index) {
     currentImage = index;
 
     // Open the lightbox
-    lightbox.classList.add('open');
+   lightbox.removeAttribute('style');
+lightbox.classList.add('open');
 
     // Load high-resolution version if available
     const fullImage = image.dataset.full;
