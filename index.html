@@ -250,6 +250,7 @@ Casper Little (b. 2005) is a Dorset-based painter and early-career artist. He gr
         <p id="lightbox-year"></p>
         <p id="lightbox-medium"></p>
         <p id="lightbox-dimensions"></p>
+        <p id="lightbox-availability"></p>
     </div>
 
     <button class="lightbox-next" aria-label="Next">→</button>
@@ -264,6 +265,7 @@ const lightboxTitle = document.getElementById('lightbox-title');
 const lightboxYear = document.getElementById('lightbox-year');
 const lightboxMedium = document.getElementById('lightbox-medium');
 const lightboxDimensions = document.getElementById('lightbox-dimensions');
+const lightboxAvailability = document.getElementById('lightbox-availability');
 
 let currentImage = 0;
 
@@ -279,6 +281,7 @@ function showImage(index) {
     lightboxYear.textContent = image.dataset.year || '';
     lightboxMedium.textContent = image.dataset.medium || '';
     lightboxDimensions.textContent = image.dataset.dimensions || '';
+    lightboxAvailability.textContent = image.dataset.availability || '';
 
     currentImage = index;
 
