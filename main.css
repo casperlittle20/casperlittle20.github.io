@@ -72,8 +72,8 @@ nav a {
     padding: 40px 80px;
     box-sizing: border-box;
 
-       .lightbox.open {
-    display: flex;
+    .lightbox.open {
+    display: flex !important;
 }
 
     grid-template-columns: minmax(0, 1fr) 220px;
@@ -149,4 +149,5 @@ css
 #lightbox-image.loading-highres {
     opacity: 0.85;
 }
+
 
