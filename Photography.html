@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photography — Casper Little</title>
+    <link rel="stylesheet" href="main.css">
+</head>
+
+<body>
+
+<header>
+    <nav>
+        <div class="name">Casper Little</div>
+
+```
+    <ul>
+        <li><a href="index.html#paintings">Paintings</a></li>
+        <li><a href="index.html#drawings">Works on paper</a></li>
+        <li><a href="index.html#exhibitions">Exhibitions</a></li>
+        <li><a href="index.html#bio">Bio</a></li>
+        <li><a href="index.html#artist-statement">Artist statement</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+        <li><a href="photography.html">Photography</a></li>
+    </ul>
+</nav>
+```
+
+</header>
+
+<main>
+
+<section id="photography" class="section">
+
+```
+<h2>Photography</h2>
+
+<div class="grid">
+
+    <!-- YOUR PHOTOGRAPHS WILL GO HERE -->
+
+</div>
+```
+
+</section>
+
+<!-- LIGHTBOX -->
+
+<div id="lightbox" class="lightbox">
+
+```
+<button class="lightbox-close" aria-label="Close">×</button>
+
+<button class="lightbox-prev" aria-label="Previous">←</button>
+
+<div class="lightbox-image-container">
+    <img id="lightbox-image" src="" alt="">
+</div>
+
+<div class="lightbox-info">
+    <h2 id="lightbox-title"></h2>
+    <p id="lightbox-year"></p>
+    <p id="lightbox-medium"></p>
+    <p id="lightbox-dimensions"></p>
+</div>
+
+<button class="lightbox-next" aria-label="Next">→</button>
+```
+
+</div>
+
+<script>
+
+const images = document.querySelectorAll('.grid img');
+
+const lightbox = document.getElementById('lightbox');
+const lightboxImage = document.getElementById('lightbox-image');
+const lightboxTitle = document.getElementById('lightbox-title');
+const lightboxYear = document.getElementById('lightbox-year');
+const lightboxMedium = document.getElementById('lightbox-medium');
+const lightboxDimensions = document.getElementById('lightbox-dimensions');
+
+let currentImage = 0;
+
+
+function showImage(index) {
+
+    const image = images[index];
+
+    lightboxImage.src = image.src;
+    lightboxImage.alt = image.alt || '';
+
+    lightboxTitle.textContent = image.dataset.title || '';
+    lightboxYear.textContent = image.dataset.year || '';
+    lightboxMedium.textContent = image.dataset.medium || '';
+    lightboxDimensions.textContent = image.dataset.dimensions || '';
+
+    currentImage = index;
+
+    lightbox.removeAttribute('style');
+    lightbox.classList.add('open');
+
+
+    const fullImage = image.dataset.full;
+
+    if (fullImage) {
+
+        lightboxImage.classList.add('loading-highres');
+
+        const highResImage = new Image();
+
+        highResImage.onload = function () {
+
+            if (currentImage === index) {
+
+                lightboxImage.src = fullImage;
+
+                requestAnimationFrame(function () {
+                    lightboxImage.classList.remove('loading-highres');
+                });
+
+            }
+
+        };
+
+        highResImage.src = fullImage;
+
+    } else {
+
+        lightboxImage.classList.remove('loading-highres');
+
+    }
+
+}
+
+
+images.forEach(function (image, index) {
+
+    image.addEventListener('click', function () {
+        showImage(index);
+    });
+
+});
+
+
+document.querySelector('.lightbox-close').addEventListener('click', function () {
+    lightbox.classList.remove('open');
+});
+
+
+document.querySelector('.lightbox-next').addEventListener('click', function () {
+
+    currentImage = (currentImage + 1) % images.length;
+
+    showImage(currentImage);
+
+});
+
+
+document.querySelector('.lightbox-prev').addEventListener('click', function () {
+
+    currentImage = (currentImage - 1 + images.length) % images.length;
+
+    showImage(currentImage);
+
+});
+
+</script>
+    </main>
+</body>
+</html>
+
