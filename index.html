@@ -267,42 +267,37 @@ const lightboxDimensions = document.getElementById('lightbox-dimensions');
 
 let currentImage = 0;
 
-
 function showImage(index) {
     const image = images[index];
 
-    // Show the lower-resolution image immediately
+    // Show the normal image immediately
     lightboxImage.src = image.src;
-    lightboxImage.alt = image.alt;
+    lightboxImage.alt = image.alt || '';
 
+    // Show artwork information
     lightboxTitle.textContent = image.dataset.title || '';
     lightboxYear.textContent = image.dataset.year || '';
     lightboxMedium.textContent = image.dataset.medium || '';
     lightboxDimensions.textContent = image.dataset.dimensions || '';
 
     currentImage = index;
+
+    // Open the lightbox
     lightbox.classList.add('open');
 
-    // Get the high-resolution image
+    // Load high-resolution version if available
     const fullImage = image.dataset.full;
 
     if (fullImage) {
-
-        // Slightly fade the image while the high-res version loads
         lightboxImage.classList.add('loading-highres');
 
         const highResImage = new Image();
 
-        highResImage.onload = () => {
-
-            // Make sure the user is still looking at this image
+        highResImage.onload = function () {
             if (currentImage === index) {
-
-                // Swap to the high-resolution image
                 lightboxImage.src = fullImage;
 
-                // Fade back to full opacity
-                requestAnimationFrame(() => {
+                requestAnimationFrame(function () {
                     lightboxImage.classList.remove('loading-highres');
                 });
             }
@@ -310,29 +305,30 @@ function showImage(index) {
 
         highResImage.src = fullImage;
     } else {
-        // No high-res image available
         lightboxImage.classList.remove('loading-highres');
     }
 }
 
-
-
-images.forEach((image, index) => {
-    image.addEventListener('click', () => {
+// Open images when clicked
+images.forEach(function (image, index) {
+    image.addEventListener('click', function () {
         showImage(index);
     });
 });
 
-document.querySelector('.lightbox-close').addEventListener('click', () => {
+// Close
+document.querySelector('.lightbox-close').addEventListener('click', function () {
     lightbox.classList.remove('open');
 });
 
-document.querySelector('.lightbox-next').addEventListener('click', () => {
+// Next
+document.querySelector('.lightbox-next').addEventListener('click', function () {
     currentImage = (currentImage + 1) % images.length;
     showImage(currentImage);
 });
 
-document.querySelector('.lightbox-prev').addEventListener('click', () => {
+// Previous
+document.querySelector('.lightbox-prev').addEventListener('click', function () {
     currentImage = (currentImage - 1 + images.length) % images.length;
     showImage(currentImage);
 });
