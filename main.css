@@ -136,3 +136,13 @@ nav a {
     right: 40px;
     top: 50%;
 }
+css
+#lightbox-image {
+    opacity: 1;
+    transition: opacity 0.2s ease-in-out;
+}
+
+#lightbox-image.loading-highres {
+    opacity: 0.85;
+}
+
