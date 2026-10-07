@@ -63,7 +63,9 @@ nav a {
 /* LIGHTBOX */
 
 
-   .lightbox {
+   /* LIGHTBOX */
+
+.lightbox {
     display: none;
     position: fixed;
     inset: 0;
@@ -71,19 +73,13 @@ nav a {
     background: white;
     padding: 40px 80px;
     box-sizing: border-box;
-
-    .lightbox.open {
-    display: flex !important;
-}
-
     grid-template-columns: minmax(0, 1fr) 220px;
     align-items: center;
     gap: 60px;
 }
 
-
 .lightbox.open {
-    display: grid;
+    display: grid !important;
 }
 
 .lightbox-image-container {
@@ -131,6 +127,7 @@ nav a {
     top: 20px;
     right: 25px;
 }
+
 .lightbox-prev {
     left: 40px;
     top: 50%;
@@ -140,7 +137,9 @@ nav a {
     right: 40px;
     top: 50%;
 }
-css
+
+/* HIGH-RES IMAGE LOADING */
+
 #lightbox-image {
     opacity: 1;
     transition: opacity 0.2s ease-in-out;
@@ -149,5 +148,3 @@ css
 #lightbox-image.loading-highres {
     opacity: 0.85;
 }
-
-
